@@ -1,0 +1,147 @@
+	.file	"sizes.c"
+	.section	.rodata
+.LC0:
+	.string	"Data Sizes"
+.LC1:
+	.string	"=========="
+.LC2:
+	.string	"char        : %ld\n"
+.LC3:
+	.string	"short       : %ld\n"
+.LC4:
+	.string	"int         : %ld\n"
+.LC5:
+	.string	"long        : %ld\n"
+.LC6:
+	.string	"long long   : %ld\n"
+.LC7:
+	.string	"float       : %ld\n"
+.LC8:
+	.string	"double      : %ld\n"
+.LC9:
+	.string	"long double : %ld\n"
+.LC10:
+	.string	"_Decimal32  : %ld\n"
+.LC11:
+	.string	"_Decimal64  : %ld\n"
+.LC12:
+	.string	"_Decimal128 : %ld\n"
+.LC13:
+	.string	"int8_t      : %ld\n"
+.LC14:
+	.string	"int16_t     : %ld\n"
+.LC15:
+	.string	"int32_t     : %ld\n"
+.LC16:
+	.string	"int64_t     : %ld\n"
+.LC17:
+	.string	"size_t      : %ld\n"
+.LC18:
+	.string	"pid_t       : %ld\n"
+.LC19:
+	.string	"void *      : %ld\n"
+.LC20:
+	.string	"char *      : %ld\n"
+	.text
+	.globl	main
+	.type	main, @function
+main:
+.LFB2:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$16, %rsp
+	movl	%edi, -4(%rbp)
+	movq	%rsi, -16(%rbp)
+	movl	$.LC0, %edi
+	call	puts
+	movl	$.LC1, %edi
+	call	puts
+	movl	$1, %esi
+	movl	$.LC2, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$2, %esi
+	movl	$.LC3, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$4, %esi
+	movl	$.LC4, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$8, %esi
+	movl	$.LC5, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$8, %esi
+	movl	$.LC6, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$4, %esi
+	movl	$.LC7, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$8, %esi
+	movl	$.LC8, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$16, %esi
+	movl	$.LC9, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$4, %esi
+	movl	$.LC10, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$8, %esi
+	movl	$.LC11, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$16, %esi
+	movl	$.LC12, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$1, %esi
+	movl	$.LC13, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$2, %esi
+	movl	$.LC14, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$4, %esi
+	movl	$.LC15, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$8, %esi
+	movl	$.LC16, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$8, %esi
+	movl	$.LC17, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$4, %esi
+	movl	$.LC18, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$8, %esi
+	movl	$.LC19, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$8, %esi
+	movl	$.LC20, %edi
+	movl	$0, %eax
+	call	printf
+	movl	$0, %eax
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2:
+	.size	main, .-main
+	.ident	"GCC: (Gentoo 4.7.3-r1 p1.5, pie-0.5.5) 4.7.3"
+	.section	.note.GNU-stack,"",@progbits
