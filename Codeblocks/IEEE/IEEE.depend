@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1515189496 source:/home/grigole/workspace/Codeblocks/IEEE/main.c
+	<stdio.h>
+	<stdlib.h>
+	<ieee754.h>
+
