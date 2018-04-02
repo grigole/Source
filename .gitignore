@@ -5,3 +5,16 @@
 **/obj
 **/bin
 commodore/
+/netbeans/objectDemo/nbproject/private/
+/netbeans/objectDemo/build/
+/netbeans/objectDemo/dist/
+/netbeans/log4jDemo/nbproject/private/
+/netbeans/log4jDemo/build/
+/netbeans/RadioLib/nbproject/private/
+/netbeans/RadioLib/dist/
+/netbeans/RadioLib/build/
+/netbeans/RadioTest/nbproject/private/
+/netbeans/RadioTest/build/
+/netbeans/RadioPlayer/nbproject/private/
+/netbeans/RadioPlayer/build/
+/netbeans/LibTemp/nbproject/private/
