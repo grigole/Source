@@ -1,0 +1,4 @@
+2018-03-22 21:41:48 DEBUG ObjectDemo:26 - main() entered
+2018-03-22 21:41:48 DEBUG ObjectDemo:27 - main() exited
+2018-03-23 17:09:48 DEBUG Log4jDemo:26 - main() entered
+2018-03-23 17:09:48 DEBUG Log4jDemo:27 - main() exited
