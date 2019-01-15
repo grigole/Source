@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-main()
+int main()
 {
 	long sum = 0;
 	long x;
