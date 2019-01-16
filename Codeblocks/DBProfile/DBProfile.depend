@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1542073643 source:/home/grigole/src/Codeblocks/DBProfile/main.c
+	<stdio.h>
+	<stdlib.h>
+	<libgen.h>
+	<log4c.h>
+	"sqlite.h"
+	"timer.h"
+
+1533159022 /home/grigole/src/Codeblocks/DBProfile/sqlite.h
+
+1524604879 /home/grigole/src/Codeblocks/DBProfile/timer.h
+	<time.h>
+	<sys/resource.h>
+
+1526865727 source:/home/grigole/src/Codeblocks/DBProfile/timer.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<log4c.h>
+	<errno.h>
+	"timer.h"
+
+1542245061 source:/home/grigole/src/Codeblocks/DBProfile/sqlite.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<log4c.h>
+	<sqlite3.h>
+
