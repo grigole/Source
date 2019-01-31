@@ -11,6 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="1000" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -20,6 +21,7 @@
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="1000" />
 				<Compiler>
 					<Add option="-O2" />
 				</Compiler>
@@ -35,8 +37,11 @@
 		<Linker>
 			<Add option="-L/usr/local/lib -llog4c" />
 			<Add library="/usr/lib64/libsqlite3.so" />
+			<Add library="/usr/lib64/postgresql-10/lib64/libpq.so" />
 		</Linker>
 		<Unit filename="main.cpp" />
+		<Unit filename="postgresql.cpp" />
+		<Unit filename="postgresql.h" />
 		<Unit filename="sqlite.cpp" />
 		<Unit filename="sqlite.h" />
 		<Unit filename="timer.cpp" />

@@ -1,24 +1,27 @@
 # depslib dependency file v1.0
-1542253694 source:/home/grigole/src/Codeblocks/DBProfileCPP/main.cpp
+1548950513 source:/home/grigole/src/Codeblocks/DBProfileCPP/main.cpp
 	<stdio.h>
 	<stdlib.h>
 	<libgen.h>
 	<log4c.h>
 	"sqlite.h"
+	"postgresql.h"
 	"timer.h"
 
-1542245018 /home/grigole/src/Codeblocks/DBProfileCPP/sqlite.h
+1547600597 /home/grigole/src/Codeblocks/DBProfileCPP/sqlite.h
+	<sqlite3.h>
 
 1542245028 /home/grigole/src/Codeblocks/DBProfileCPP/timer.h
 	<time.h>
 	<sys/resource.h>
 
-1542245014 source:/home/grigole/src/Codeblocks/DBProfileCPP/sqlite.cpp
+1547600629 source:/home/grigole/src/Codeblocks/DBProfileCPP/sqlite.cpp
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<log4c.h>
 	<sqlite3.h>
+	"sqlite.h"
 
 1542245032 source:/home/grigole/src/Codeblocks/DBProfileCPP/timer.cpp
 	<stdio.h>
@@ -27,4 +30,15 @@
 	<log4c.h>
 	<errno.h>
 	"timer.h"
+
+1548898044 /home/grigole/src/Codeblocks/DBProfileCPP/postgresql.h
+	<libpq-fe.h>
+
+1548950722 source:/home/grigole/src/Codeblocks/DBProfileCPP/postgresql.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<log4c.h>
+	<libpq-fe.h>
+	"postgresql.h"
 

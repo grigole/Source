@@ -3,29 +3,31 @@
 #include <string.h>
 #include <log4c.h>
 
-#include <sqlite3.h>
+#include <libpq-fe.h>
 
-#include "sqlite.h"
+#include "postgresql.h"
 
 extern log4c_category_t* mycat;
 
-int SQLiteDB::open_db_sqlite( const char* dbName )
+int PostgresqlDB::open_db_postgresql( const char* dbName )
 {
-    int st;
+    char    connStr[256];
+
+    sprintf( connStr, "dbname=%s host=localhost port=5432 user=grigole", dbName );
 
     log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "Opening database" );
 
-    st = sqlite3_open( dbName, &pDB );
-    if ( st )
+    pDB = PQconnectdb( connStr );
+    if ( PQstatus( pDB ) != CONNECTION_OK )
     {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg( pDB ) );
+        fprintf(stderr, "Can't open database: %s\n", PQerrorMessage( pDB ) );
         return 3;
     }
 
     return 0;
 }
 
-int SQLiteDB::close_db_sqlite( void )
+int PostgresqlDB::close_db_postgresql( void )
 {
     if ( pDB == NULL )
     {
@@ -34,18 +36,17 @@ int SQLiteDB::close_db_sqlite( void )
         return 0;
     }
 
-    sqlite3_close( pDB );
+    PQfinish( pDB );
     pDB = NULL;
 
     return 0;
 }
 
-int SQLiteDB::prepare_db_sqlite( void )
+int PostgresqlDB::prepare_db_postgresql( void )
 {
-    int st;
-
-    char sSql[ 1000 ];
-    char *err;
+    char         sSql[ 1000 ];
+    PGresult    *res;
+    int          st;
 
     log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "    Dropping table RAND" );
 
@@ -58,17 +59,13 @@ int SQLiteDB::prepare_db_sqlite( void )
 
     strcpy( sSql, "drop table if exists RAND;" );
 
-    st = sqlite3_exec( pDB,
-                       sSql,
-                       NULL,
-                       NULL,
-                       &err
-                     );
+    res = PQexec( pDB, sSql );
+    st = PQresultStatus( res );
 
-    if ( st != SQLITE_OK )
+    if ( st != PGRES_COMMAND_OK )
     {
-        fprintf( stderr, "sqlite3_exec() returns %d\n", st );
-        fprintf( stderr, "    %s\n", err );
+        fprintf( stderr, "PQexec() for drop table returns %d\n", st );
+        fprintf( stderr, "    %s\n", PQerrorMessage( pDB ) );
         fprintf( stderr, "Stopping\n" );
 
         return st;
@@ -77,22 +74,19 @@ int SQLiteDB::prepare_db_sqlite( void )
     log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "    Table dropped" );
 
     strcpy( sSql, "CREATE TABLE RAND ( \
-                    ID integer primary key autoincrement, \
+                    ID SERIAL PRIMARY KEY, \
                     DATA integer \
                    );"
           );
 
-    st = sqlite3_exec( pDB,
-                       sSql,
-                       NULL,
-                       NULL,
-                       &err
-                     );
 
-    if ( st != SQLITE_OK )
+    res = PQexec( pDB, sSql );
+    st = PQresultStatus( res );
+
+    if ( st != PGRES_COMMAND_OK )
     {
-        fprintf( stderr, "sqlite3_exec() returns %d\n", st );
-        fprintf( stderr, "    %s\n", err );
+        fprintf( stderr, "PQexec() for create table returns %d\n", st );
+        fprintf( stderr, "    %s\n", PQerrorMessage( pDB ) );
         fprintf( stderr, "Stopping\n" );
 
         return st;
@@ -103,10 +97,8 @@ int SQLiteDB::prepare_db_sqlite( void )
     return 0;
 }
 
-int SQLiteDB::add_to_sqlite( int nCount )
+int PostgresqlDB::add_to_postgresql( int nCount )
 {
-    int st;
-
     if ( pDB == NULL )
     {
         log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "SQLite Database not open\n" );
@@ -116,28 +108,26 @@ int SQLiteDB::add_to_sqlite( int nCount )
 
     log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "Adding %d random numbers to database", nCount );
 
-    int    nRand;
+    int     nRand;
+    int     st;
 
     int     x;
     for ( x = 0; x < nCount; x++ )
     {
         nRand = random() % nCount;
 
-        char sSql[ 1000 ];
-        char *err;
+        char         sSql[ 1000 ];
+        PGresult    *res;
 
         sprintf( sSql, "insert into RAND ( DATA ) VALUES ( %d );", nRand );
-        st = sqlite3_exec( pDB,
-                           sSql,
-                           NULL,
-                           NULL,
-                           &err
-                         );
 
-        if ( st != SQLITE_OK )
+        res = PQexec( pDB, sSql );
+        st = PQresultStatus( res );
+
+        if ( st != PGRES_COMMAND_OK )
         {
-            fprintf( stderr, "sqlite3_exec() returns %d\n", st );
-            fprintf( stderr, "    %s\n", err );
+            fprintf( stderr, "PQexec() for insert one row returns %d\n", st );
+            fprintf( stderr, "    %s\n", PQerrorMessage( pDB ) );
             fprintf( stderr, "Stopping\n" );
 
             return st;
@@ -147,10 +137,8 @@ int SQLiteDB::add_to_sqlite( int nCount )
     return 0;
 }
 
-int SQLiteDB::add_to_sqlite_10( int nCount )
+int PostgresqlDB::add_to_postgresql_10( int nCount )
 {
-    int st;
-
     if ( pDB == NULL )
     {
         log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "SQLite Database not open\n" );
@@ -162,11 +150,12 @@ int SQLiteDB::add_to_sqlite_10( int nCount )
 
     int    nRand;
 
-    int     x;
-    int     batch_size = nCount / 10;
-    int     nBatch = 0;
-    char    sSql[ 10000 ];
-    char   *err;
+    int          x;
+    int          batch_size = nCount / 10;
+    int          nBatch = 0;
+    char         sSql[ 10000 ];
+    PGresult    *res;
+    int          st;
 
     batch_size = 10;
 
@@ -195,19 +184,16 @@ int SQLiteDB::add_to_sqlite_10( int nCount )
 
 //            printf( "Executing %s\n", sSql );
 
-            st = sqlite3_exec( pDB,
-                               sSql,
-                               NULL,
-                               NULL,
-                               &err
-                             );
+            res = PQexec( pDB, sSql );
+            st = PQresultStatus( res );
 
-            if ( st != SQLITE_OK )
+            if ( st != PGRES_COMMAND_OK )
             {
-                fprintf( stderr, "sqlite3_exec() returns %d\n", st );
-                fprintf( stderr, "    %s\n", err );
+                fprintf( stderr, "PQexec() for insert 10 rows returns %d\n", st );
+                fprintf( stderr, "    %s\n", PQerrorMessage( pDB ) );
                 fprintf( stderr, "Stopping\n" );
-                    return st;
+
+                return st;
             }
 
             printf( "Added row %d\n", x+1 );

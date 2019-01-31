@@ -1,0 +1,21 @@
+20190131 16:10:10.933 DEBUG    DBProfile.log- argc = 2
+20190131 16:10:10.933 DEBUG    DBProfile.log- nCount = 1000
+20190131 16:10:10.933 DEBUG    DBProfile.log- Opening database
+20190131 16:10:10.939 DEBUG    DBProfile.log-     Dropping table RAND
+20190131 16:10:10.950 DEBUG    DBProfile.log-     Table dropped
+20190131 16:10:11.067 DEBUG    DBProfile.log-     Table created
+20190131 16:10:11.067 DEBUG    DBProfile.log- Adding data in 10 batches rows at a time...
+20190131 16:10:11.067 DEBUG    DBProfile.log- user = 0.002783
+20190131 16:10:11.067 DEBUG    DBProfile.log- sys  = 0.003711
+20190131 16:10:11.067 DEBUG    DBProfile.log- time = 5816.918331
+20190131 16:10:11.067 DEBUG    DBProfile.log- Adding 1000 random numbers to database in batches of 10 rows
+20190131 16:10:11.067 DEBUG    DBProfile.log- Batch size is 10
+20190131 16:10:11.909 DEBUG    DBProfile.log- user = 0.006722
+20190131 16:10:11.909 DEBUG    DBProfile.log- sys  = 0.006722
+20190131 16:10:11.909 DEBUG    DBProfile.log- time = 0.842338
+20190131 16:10:11.909 DEBUG    DBProfile.log- user    time : 0.003939
+20190131 16:10:11.909 DEBUG    DBProfile.log- sys     time : 0.003011
+20190131 16:10:11.909 DEBUG    DBProfile.log- elapsed time : 0.842338
+20190131 16:10:11.909 DEBUG    DBProfile.log- Returning 0
+20190131 16:10:11.909 DEBUG    DBProfile.log- Closing database
+

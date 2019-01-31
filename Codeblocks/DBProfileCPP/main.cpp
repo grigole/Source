@@ -4,15 +4,13 @@
 #include <log4c.h>
 
 #include "sqlite.h"
+#include "postgresql.h"
 #include "timer.h"
 
 /* definition to expand macro then apply to pragma message */
 #define VALUE_TO_STRING(x) #x
 #define VALUE(x) VALUE_TO_STRING(x)
 #define VAR_NAME_VALUE(var) #var "="  VALUE(var)
-
-/* Some example here */
-#pragma message(VAR_NAME_VALUE(__cplusplus))
 
 log4c_category_t* mycat = NULL;
 
@@ -42,20 +40,23 @@ int main( int argc, char** argv )
 
     log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "nCount = %d", nCount );
 
-    st = open_db_sqlite( "./test.db" );
+#if 0
+    SQLiteDB    db;
+
+    st = db.open_db_sqlite( "./test.db" );
     if ( st )
     {
-        close_db_sqlite();
+        db.close_db_sqlite();
 
         exit( st );
     }
 
     // Create or truncate RAND table in preparation for test
     //
-    st = prepare_db_sqlite();
+    st = db.prepare_db_sqlite();
     if ( st )
     {
-        close_db_sqlite();
+        db.close_db_sqlite();
 
         exit( st );
     }
@@ -73,10 +74,10 @@ int main( int argc, char** argv )
 
     start_timer();
 
-    st = add_to_sqlite_10( nCount );
+    st = db.add_to_sqlite_10( nCount );
     if ( st )
     {
-        close_db_sqlite();
+        db.close_db_sqlite();
 
         exit( st );
     }
@@ -94,7 +95,66 @@ int main( int argc, char** argv )
 
     log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "Closing database\n" );
 
-    close_db_sqlite();
+    db.close_db_sqlite();
+#endif
+
+    PostgresqlDB    db;
+
+    st = db.open_db_postgresql( "grigole" );
+    if ( st )
+    {
+        db.close_db_postgresql();
+
+        exit( st );
+    }
+
+    // Create or truncate RAND table in preparation for test
+    //
+    st = db.prepare_db_postgresql();
+    if ( st )
+    {
+        db.close_db_postgresql();
+
+        exit( st );
+    }
+
+    // Test 1 - Add data to database one row at a time/
+    //
+
+#if 0
+    log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "Adding data one row at a time..." );
+
+    st = db.add_to_postgresql( nCount );
+#endif // 0
+
+    log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "Adding data in 10 batches rows at a time..." );
+
+    procTimer_t*     pTime;
+
+    start_timer();
+
+    st = db.add_to_postgresql_10( nCount );
+    if ( st )
+    {
+        db.close_db_postgresql();
+
+        exit( st );
+    }
+
+    pTime = stop_timer();
+
+    log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "user    time : %lf", pTime->user );
+    log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "sys     time : %lf", pTime->system );
+    log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "elapsed time : %lf", pTime->time );
+
+    log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "Returning %d", st );
+
+    // Close the database
+    //
+
+    log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "Closing database\n" );
+
+    db.close_db_postgresql();
 
     if ( log4c_fini() )
     {
