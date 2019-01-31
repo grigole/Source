@@ -4,6 +4,7 @@
 
 **/obj
 **/bin
+**/build
 commodore/
 /netbeans/objectDemo/nbproject/private/
 /netbeans/objectDemo/build/
