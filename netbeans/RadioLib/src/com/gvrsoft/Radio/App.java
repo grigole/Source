@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 grigole
+ * Copyright (C) 2019 grigole
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,38 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.gvrsoft.Radio;
-
-import java.util.LinkedList;
 
 /**
  *
  * @author grigole
  */
-public class Radio {
+public class App {
     
-    LinkedList<RadioStation> presets;
-    
-    // Default constructor
-    //
-    public Radio()
+            
+    public static void main( String[] args )
     {
-        presets = null;
+        Radio radio = new Radio( "CGVR", "http://cgvr.com");
+
+        int nStations = radio.GetNumStations();
     }
 
-    public Radio( String name, String url )
-    {
-        presets = new LinkedList<>();
-        
-        System.out.println( "Creating station " + name + "/" + url );
-        presets.add( new RadioStation( name, url ) );
-    }
-    
-    public int GetNumStations()
-    {
-        System.out.println( "There are " + presets.size() + " stations." );
-        
-        return presets.size();
-    }
 }

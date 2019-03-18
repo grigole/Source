@@ -1,0 +1,3 @@
+2018-04-04 17:41:06 INFO  RadioPlayerUI:128 - Calling play()
+2018-04-04 17:41:14 INFO  RadioPlayerUI:121 - Creating first station
+2018-04-04 17:41:41 INFO  RadioPlayerUI:121 - Calling exit( 0 )
