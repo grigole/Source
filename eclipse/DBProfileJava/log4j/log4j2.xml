@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Appenders>
+    <File name="FileLogger" fileName="DBProfile.log" append="true">
+      <PatternLayout pattern="%d %-5p [%M:%L] - %m%n"/>
+    </File>
+    <Console name="STDOUT" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d %-5p [%M:%L] - %m%n"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Logger name="com.gvrsoft.DBProfile" level="trace">
+      <AppenderRef ref="FileLogger"></AppenderRef>
+    </Logger>
+    <Root level="error">
+      <AppenderRef ref="STDOUT"/>
+    </Root>
+  </Loggers>
+</Configuration>
