@@ -9,11 +9,14 @@ public class DBProfile {
 
 	public static void main(String[] args) {
 
-		log4j.trace( "Creating DBMySql");
+		log4j.info( "Creating DBMySql");
 
-		DBMySql database = new DBMySql();
+		DBMySql database = new DBMySql( "test" );
 		
-		log4j.trace( "Opening database");
-		database.open_db_mysql( "test");
+		log4j.info( "Opening database");
+		database.open_db_mysql();
+
+		log4j.info( "Closing database");
+		database.close_db_mysql();
 	}
 }

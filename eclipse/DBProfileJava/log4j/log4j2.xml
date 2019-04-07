@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
   <Appenders>
-    <File name="FileLogger" fileName="DBProfile.log" append="true">
+    <File name="FileLogger" fileName="DBProfile.log" append="false">
       <PatternLayout pattern="%d %-5p [%M:%L] - %m%n"/>
     </File>
     <Console name="STDOUT" target="SYSTEM_OUT">
