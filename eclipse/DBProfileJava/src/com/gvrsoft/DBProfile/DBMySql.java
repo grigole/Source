@@ -3,6 +3,8 @@ package com.gvrsoft.DBProfile;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -105,5 +107,95 @@ public class DBMySql {
 		}
 	    
         return 0;
+	}
+
+	int prepare_db_mysql()
+	{
+		// Database should be open
+	    if ( dbConn == null )
+	    {
+	        log4j.error( "MySql database not open\n" );
+	
+	        return 1;
+	    }
+	    
+	    log4j.info( "Dropping table RAND" );
+	    
+	    Statement 	st;
+	    String 		sSql = "drop table if exists RAND;";
+
+	    try {
+
+	    	st = dbConn.createStatement(); 
+        
+    	} 
+    	catch ( SQLException ex ) {
+            
+            log4j.error( ex.getMessage() );
+
+            st = null;
+
+        }
+
+	    try {
+		    
+	    	st.executeUpdate( sSql );
+
+	    	log4j.info( "Table dropped" );
+        
+    	} 
+    	catch ( SQLException ex ) {
+            
+            log4j.error( ex.getMessage() );
+
+        }
+
+	    sSql = "CREATE TABLE RAND ( " +
+	    		"ID SERIAL PRIMARY KEY, " +
+                "DATA integer );";
+
+        // Create new, empty table
+               
+        try {
+    	    	
+	    		st.executeUpdate( sSql );
+
+	    		log4j.info( "Empty table created" );
+        
+    	} 
+    	catch ( SQLException ex ) {
+            
+            log4j.error( ex.getMessage() );
+
+        }
+	    
+        try {
+        	
+            st.close();
+            
+        }
+        catch ( SQLException ex ) {
+
+            log4j.error( ex.getMessage() );
+            
+        }
+/*	
+	
+	
+	    res = PQexec( pDB, sSql );
+	    st = PQresultStatus( res );
+	
+	    if ( st != PGRES_COMMAND_OK )
+	    {
+	        fprintf( stderr, "PQexec() for create table returns %d\n", st );
+	        fprintf( stderr, "    %s\n", PQerrorMessage( pDB ) );
+	        fprintf( stderr, "Stopping\n" );
+	
+	        return st;
+	    }
+	
+	    log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "    Table created" );
+*/
+	    return 0;
 	}
 }

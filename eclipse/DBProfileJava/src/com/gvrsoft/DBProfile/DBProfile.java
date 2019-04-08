@@ -15,6 +15,9 @@ public class DBProfile {
 		
 		log4j.info( "Opening database");
 		database.open_db_mysql();
+		
+		log4j.info( "Preparing database");
+		database.prepare_db_mysql();
 
 		log4j.info( "Closing database");
 		database.close_db_mysql();
