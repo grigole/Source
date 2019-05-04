@@ -18,7 +18,7 @@
 #include <Xm/PushB.h>
 
 /* Prototype Callback function */
-void pushedButton ( Widget , XtPointer , XmPushButtonCallbackStruct * );
+void pushedButton ( Widget , XtPointer , XtPointer );
 
 /* Main function */
 int main( int argc, char **argv )
@@ -45,7 +45,7 @@ int main( int argc, char **argv )
    XtAppMainLoop( app );
 }
 
-void pushedButton (Widget w, XtPointer client_data, XmPushButtonCallbackStruct *cbs)
+void pushedButton (Widget w, XtPointer client_data, XtPointer cbs)
 {
     printf("Hello to you too!\n");
 }
