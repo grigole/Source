@@ -36,6 +36,6 @@ public class mathDemoTest {
 		mathDemo math = new mathDemo();
 		mathDemo.main( args );
 		assertEquals( "PI is 3.141593\n" + 
-					  "PI is 3.141592653589793\n", outContent.toString());
+					  "PI is 3.141592653589793\n", outContent.toString() );
 	}
 }
