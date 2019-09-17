@@ -1,5 +1,7 @@
 package com.gvrsoft.DBProfile;
 
+import java.util.Properties;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,10 +13,12 @@ public class DBProfile {
 
 		log4j.info( "Creating DBMySql");
 
-		DBMySql database = new DBMySql( "test" );
+		DBMySql database = new DBMySql();
+
+		Properties props = JdbcProperties.getConnectionData();
 		
 		log4j.info( "Opening database");
-		database.open_db_mysql();
+		database.open_db_mysql( props );
 		
 		log4j.info( "Preparing database");
 		database.prepare_db_mysql();

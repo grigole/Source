@@ -4,40 +4,29 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 import java.sql.ResultSet;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class DBMySql {
-
-	DBMySql()
-	{
-	}
-
-	DBMySql( String name )
-	{
-		dbName = name;
-	}
 	
 	private static final Logger log4j = LogManager.getLogger(DBMySql.class.getName());
 
 	private String		dbName = null;
 	private Connection	dbConn = null;
-
-	int open_db_mysql()
-	{
-		if ( dbName == null )
-		{
-			log4j.error( "Database name is not set" );
-			
-			return -2;
-		}
-		
-		return open_db_mysql( dbName );
-	}
 	
-	int open_db_mysql( String name )
+
+	/**
+	 * Create and open a connection to the MySql database specified by the
+	 * properties object.
+	 *
+	 * @param props The java.util.properties object containing the
+	 * 				database connection parameters
+	 * @return 0 on success. -1 on error
+	 */
+	int open_db_mysql( Properties props )
 	{
 		if ( dbConn != null )
 		{
@@ -45,8 +34,6 @@ public class DBMySql {
 			
 			return -1;
 		}
-
-		dbName = name;
 		
 		try {
 			
@@ -58,15 +45,17 @@ public class DBMySql {
 			e.printStackTrace();
 			
 		}
+
+		dbName = props.getProperty( "db.database" );
 		
 	    log4j.info( "Opening database \"" + dbName + "\"" );
 
         try {
 
     		dbConn = DriverManager.getConnection(
-    				"jdbc:mysql://localhost/" + dbName,
-    				"grigole",
-    				"blueyr" );
+    				"jdbc:mysql://localhost/" + props.getProperty( "db.database" ),
+    				props.getProperty( "db.user" ),
+    				props.getProperty( "db.passwd" ) );
 
     		log4j.info( "Database opened successfully" );
 
@@ -81,6 +70,11 @@ public class DBMySql {
         return 0;
 	}
 
+	/**
+	 * Close the connection to the MySql database
+	 *
+	 * @return 0 on success. -1 on error
+	 */
 	int close_db_mysql()
 	{
 		if ( dbConn == null )
@@ -109,6 +103,16 @@ public class DBMySql {
         return 0;
 	}
 
+	/**
+	 * Prepare the MySql database for the tests.
+	 * <p>
+	 * Delete the table RAND (this has the side-effect of removing any
+	 * data remaining from a previous test).
+	 * <p>
+	 * Create the RAND table in preparation for the following tests.
+	 *
+	 * @return 0 on success. -1 on error
+	 */
 	int prepare_db_mysql()
 	{
 		// Database should be open
