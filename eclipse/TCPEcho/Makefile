@@ -14,10 +14,10 @@ endif
 all:	tcp_client tcp_server
 
 tcp_client:	$(CLIENT_OBJS)
-	$(CXX) -o $@ $^
+	$(CXX) -llog4c -o $@ $^
 
 tcp_server:	$(SERVER_OBJS)
-	$(CXX) -o $@ $^
+	$(CXX) -llog4c -o $@ $^
 
 %.o:	$(PROJECT_ROOT)%.cpp
 	$(CXX) -c $(CFLAGS) $(CXXFLAGS) $(CPPFLAGS) -o $@ $<
