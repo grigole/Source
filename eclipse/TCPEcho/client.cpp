@@ -14,9 +14,11 @@ log4c_category_t* mycat = NULL;
 int main( int argc, char **argv )
 {
 	log4c_init();
-	mycat = log4c_category_get( "TCPEcho.log" );
+	mycat = log4c_category_get( "tcp_client.log" );
 
 	log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "argc = %d", argc );
+
+	log4c_fini();
 
 	return 0;
 }
