@@ -1,7 +1,7 @@
 PROJECT_ROOT = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
-CLIENT_OBJS = client.o
-SERVER_OBJS = server.o
+CLIENT_OBJS = client.o config.o util.o
+SERVER_OBJS = server.o config.o util.o
 
 ifeq ($(BUILD_MODE),debug)
 	CFLAGS += -g
