@@ -32,7 +32,7 @@ int main( int argc, char **argv )
 {
 	int	tcp_socket, 	st;
 	struct addrinfo 	addr, *result;
-	struct sockaddr sa;
+	struct sockaddr 	sa;
 
 	log4c_init();
 	mycat = log4c_category_get( "tcp_client.log" );
@@ -45,14 +45,13 @@ int main( int argc, char **argv )
 	/* Obtain address(es) matching host/port */
 
 	memset( &addr, 0, sizeof(struct addrinfo) );
-	addr.ai_family = AF_INET;       /* Allow IPv4 only for now */
+	addr.ai_family = AF_UNSPEC;       /* Allow IPv4 only for now */
 	addr.ai_socktype = SOCK_STREAM; /* Datagram socket */
-	addr.ai_flags = AI_CANONNAME; 			    /* service is numeric */
+	addr.ai_flags = 0; 			    /* service is numeric */
 	addr.ai_protocol = 0;           /* Any protocol */
 
 	printf( "host is %s, service is %s\n", config.get_host(), config.get_service() );
 	st = getaddrinfo( config.get_host(), config.get_service(), &addr, &result );
-//	st = getaddrinfo( config.get_host(), "http", &addr, &result );
 	if ( st != 0 )
 	{
 		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror( st ));
