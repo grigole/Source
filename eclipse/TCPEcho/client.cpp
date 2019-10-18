@@ -32,7 +32,6 @@ int main( int argc, char **argv )
 {
 	int	tcp_socket, 	st;
 	struct addrinfo 	addr, *result;
-	struct sockaddr 	sa;
 
 	log4c_init();
 	mycat = log4c_category_get( "tcp_client.log" );
@@ -72,23 +71,45 @@ int main( int argc, char **argv )
 	{
 		printf( "\n", rp );
 		print_addrinfo( rp );
+
+		printf( "Opening socket - " );
+
+		tcp_socket = socket( rp->ai_family, rp->ai_socktype, rp->ai_protocol );
+        if ( tcp_socket == -1 )
+        {
+        	printf( "can't open socket - %s\n", strerror( st ) );
+
+        	continue;
+        }
+
+		printf( "success\n" );
+		printf( "Connecting - " );
+
+        unsigned int	saSize = sizeof( struct sockaddr_storage );
+
+        st = connect( tcp_socket, rp->ai_addr, saSize );
+        if ( st == 0 )
+        {
+        	printf( "conected\n" );
+
+        	break;
+        }
+
+    	printf( "can't connect - %s\n", strerror( errno ) );
+
+    	close( tcp_socket );
+	}
+
+    if ( rp == NULL )
+    {               /* No address succeeded */
+        fprintf( stderr, "Could not connect to server\n" );
+
+        exit( EXIT_FAILURE );
     }
 
-#if 0
-    tcp_socket = socket( AF_INET, SOCK_STREAM, 0 );
-    if( tcp_socket == -1 )
-    {
-    	fprintf( stderr, "Unable to create socket - error %d\n", errno );
+    fprintf( stdout, "Connected\n" );
 
-    	freeaddrinfo( result );
-    	exit( EXIT_FAILURE );
-    }
-
-    fprintf( stdout, "Socket created successfully - %d\n", tcp_socket );
     close( tcp_socket );
-#endif
-
-    freeaddrinfo( result );
 
 	// log4c_category_log( mycat, LOG4C_PRIORITY_DEBUG, "argc = %d", argc );
 

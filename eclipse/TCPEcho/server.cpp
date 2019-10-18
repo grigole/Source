@@ -105,7 +105,7 @@ int main( int argc, char **argv )
         exit( EXIT_FAILURE );
     }
 
-    // Listen for connections
+    // Set socket as listening
 
     printf( "Listening...\n" );
 
@@ -120,10 +120,23 @@ int main( int argc, char **argv )
         exit( EXIT_FAILURE );
     }
 
-    printf( "Sleeping for 15 seconds... " );
-    fflush( stdout );
+    // Listen for connections
 
-    sleep( 15 );
+    int							inFd;
+    unsigned int				saSize = sizeof( struct sockaddr_storage );
+
+    inFd = accept( tcp_socket, &sa, &saSize );
+    if ( inFd == -1 )
+    {
+    	fprintf( stderr, "accept() failed - %s\n", strerror( errno ) );
+
+        freeaddrinfo( result );
+    	log4c_fini();
+
+        exit( EXIT_FAILURE );
+    }
+
+    printf( "Connection established\n");
 
     printf( "done\n" );
 
