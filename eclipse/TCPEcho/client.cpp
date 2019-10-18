@@ -38,7 +38,7 @@ int main( int argc, char **argv )
 	mycat = log4c_category_get( "tcp_client.log" );
 
 	// Read the config file
-	tcpConfig config( "tcp_server.cfg" );
+	tcpConfig config( "tcp_client.cfg" );
 
 	// Connect to the server
 
@@ -47,7 +47,7 @@ int main( int argc, char **argv )
 	memset( &addr, 0, sizeof(struct addrinfo) );
 	addr.ai_family = AF_UNSPEC;       /* Allow IPv4 only for now */
 	addr.ai_socktype = SOCK_STREAM; /* Datagram socket */
-	addr.ai_flags = 0; 			    /* service is numeric */
+	addr.ai_flags = 0;
 	addr.ai_protocol = 0;           /* Any protocol */
 
 	printf( "host is %s, service is %s\n", config.get_host(), config.get_service() );
@@ -59,10 +59,9 @@ int main( int argc, char **argv )
 		exit( EXIT_FAILURE );
 	}
 
-	printf( "result == %08x\n", result );
 	if ( result == NULL )
 	{
-		fprintf( stderr, "Server not running - done\n ");
+		fprintf( stderr, "No connecton paths - done\n ");
 
 		exit( EXIT_FAILURE );
 	}
@@ -71,7 +70,7 @@ int main( int argc, char **argv )
 
 	for (rp = result; rp != NULL; rp = rp->ai_next )
 	{
-		printf( "rp : %08x\n", rp );
+		printf( "\n", rp );
 		print_addrinfo( rp );
     }
 
