@@ -25,6 +25,7 @@
 // Project
 #include "config.h"
 #include "util.h"
+#include "protocol.h"
 
 log4c_category_t* mycat = NULL;
 
@@ -70,14 +71,14 @@ int main( int argc, char **argv )
 	for (rp = result; rp != NULL; rp = rp->ai_next )
 	{
 		printf( "\n", rp );
-		print_addrinfo( rp );
+//		print_addrinfo( rp );
 
 		printf( "Opening socket - " );
 
 		tcp_socket = socket( rp->ai_family, rp->ai_socktype, rp->ai_protocol );
         if ( tcp_socket == -1 )
         {
-        	printf( "can't open socket - %s\n", strerror( st ) );
+        	printf( "can't open socket - %d (%s)\n", errno, strerror( errno ) );
 
         	continue;
         }
@@ -95,7 +96,7 @@ int main( int argc, char **argv )
         	break;
         }
 
-    	printf( "can't connect - %s\n", strerror( errno ) );
+    	printf( "can't connect - %d (%s)\n", errno, strerror( errno ) );
 
     	close( tcp_socket );
 	}
@@ -107,7 +108,44 @@ int main( int argc, char **argv )
         exit( EXIT_FAILURE );
     }
 
-    fprintf( stdout, "Connected\n" );
+	freeaddrinfo( result );
+
+    // Send one packet
+    struct tcpecho    outpkt, inpkt;
+
+    printf( "Sending packet - " );
+    fflush( stdout );
+
+    strcpy( outpkt.msg, "First message" );
+    outpkt.size = strlen( outpkt.msg ) + 1;
+
+    st = write( tcp_socket, &outpkt, sizeof( outpkt ) );
+    if ( st == -1 )
+    {
+    	fprintf( stderr, "write() failed - %d (%s)\n", errno, strerror( errno ) );
+    }
+    else
+    {
+    	printf( "OK\n" );
+
+    	printf( "Waiting for reply - " );
+    	fflush( stdout );
+
+    	// Receive one packet
+
+    	st = read( tcp_socket, &inpkt, sizeof( inpkt ) );
+        if ( st == -1 )
+        {
+        	fprintf( stderr, "read() failed - %d (%s)\n", errno, strerror( errno ) );
+        }
+        else
+        {
+        	printf( "OK\n" );
+
+        	printf( "inpkt.size = %d\n", inpkt.size );
+        	printf( "inpkt.msg  = %s\n", inpkt.msg );
+        }
+    }
 
     close( tcp_socket );
 
