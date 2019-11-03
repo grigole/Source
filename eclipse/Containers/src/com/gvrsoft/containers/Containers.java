@@ -12,9 +12,13 @@ import java.util.*;
  */
 public class Containers {
 	
+	static final private int ITERS = 100000;
+
 	static private void demoLists()
 	{
-		List<String> arrayList = new ArrayList<String>();
+		System.out.println( "DemoLists() - start\n" );
+
+		List<String> arrayList = new ArrayList<>();
 		
 		arrayList.add( "Greg" );
 		arrayList.add( "V" );
@@ -35,6 +39,42 @@ public class Containers {
 		linkedList.forEach( System.out::println );
 		linkedList.sort( null );
 		linkedList.forEach( System.out::println );
+
+		System.out.println( "\nDemoLists() - end\n" );
+	}
+	
+	static private void benchmarkArrayList()
+	{
+		System.out.println( "BenchmarkArrayList() - start\n" );
+
+		List<Integer>	arrayList = new ArrayList<>();
+		int				x;
+		long			begin, end, diff;
+		
+		begin = System.currentTimeMillis();
+
+		for ( x= 0; x < ITERS; x++)
+		{
+			arrayList.add( x );
+		}
+		
+		end = System.currentTimeMillis();
+		
+		diff = end - begin;
+		
+		System.out.println( "Load took " + diff + " ms\n" );
+
+		begin = System.currentTimeMillis();
+		
+		Collections.shuffle( arrayList );
+
+		end = System.currentTimeMillis();
+		diff = end - begin;
+		
+		System.out.println( "Shuffle took " + diff + " ms\n" );
+
+		System.out.println( "BenchmarkArrayList() - end\n\n" );
+
 	}
 
 	/**
@@ -43,6 +83,7 @@ public class Containers {
 	public static void main(String[] args) {
 
 		demoLists();
+		benchmarkArrayList();
 	}
 
 }
