@@ -24,20 +24,24 @@ public class Containers {
 		arrayList.add( "V" );
 		arrayList.add( "Rigole" );
 		
+		System.out.println( "Raw --->" );
 		arrayList.forEach( System.out::println );
 		arrayList.sort( null );
+		System.out.println( "Sorted --->" );
 		arrayList.forEach( System.out::println );
 
 		System.out.println();
 		
-		List<Integer> linkedList = new LinkedList<Integer>();
+		List<Integer> linkedList = new LinkedList<>();
 		
 		linkedList.add( 31 );
 		linkedList.add( 27 );
 		linkedList.add( 49 );
 		
+		System.out.println( "Raw --->" );
 		linkedList.forEach( System.out::println );
 		linkedList.sort( null );
+		System.out.println( "Sorted --->" );
 		linkedList.forEach( System.out::println );
 
 		System.out.println( "\nDemoLists() - end\n" );
