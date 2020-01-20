@@ -1,10 +1,16 @@
 PROJECT_ROOT = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
+LEX = flex
+
+YACC = bison
+
 CC = clang
 CXX = clang++
 CFLAGS += -g3 -O0
 
-OBJS = parser.o
+PARSER_OBJS = parser.o
+
+PARSER_FLEX_OBJS = parser_flex.o lexer.o bison.o
 
 # ifeq ($(BUILD_MODE),debug)
 #	CFLAGS += -g
@@ -14,16 +20,30 @@ OBJS = parser.o
 #	$(error Build mode $(BUILD_MODE) not supported by this Makefile)
 # endif
 
-all:	parser
+%.c:	%.l
+	$(LEX) $(LFLAGS) --outfile=$@ $<
 
-parser:	$(OBJS)
-	$(CXX) `llvm-config --ldflags --libs` -o $@ $^
+%.c:	%.y
+	$(YACC) $(YFLAGS) $<
 
-%.o:	$(PROJECT_ROOT)%.cpp
+%.o:	%.cpp
 	$(CXX) `llvm-config --cxxflags` -c $(CFLAGS) $(CXXFLAGS) $(CPPFLAGS) -o $@ $<
 
-%.o:	$(PROJECT_ROOT)%.c
-	$(CC) `llvm-config --cxxflags` -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+%.o:	%.c
+	$(CC) `llvm-config --cflags` -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+
+all:	parser parser_flex
+
+parser:	$(PARSER_OBJS)
+	$(CC) `llvm-config --ldflags --libs` -o $@ $^
+
+parser_flex:	$(PARSER_FLEX_OBJS)
+	$(CC) `llvm-config --ldflags --libs` -o $@ $^
+
+lexer.o:	lexer.l bison.h
+
+bison.h bison.c:	bison.y
+	$(YACC) $(YFLAGS) -d $<
 
 clean:
-	rm -fr parser $(CLIENT_OBJS)
+	rm -fr parser $(PARSER_OBJS) $(PARSER_FLEX_OBJS)
