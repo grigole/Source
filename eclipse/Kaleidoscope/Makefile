@@ -6,19 +6,11 @@ YACC = bison
 
 CC = clang
 CXX = clang++
-CFLAGS += -g3 -O0
 
-PARSER_OBJS = parser.o
-
-PARSER_FLEX_OBJS = parser_flex.o lexer.o bison.o
-
-# ifeq ($(BUILD_MODE),debug)
-#	CFLAGS += -g
-# else ifeq ($(BUILD_MODE),run)
-#	CFLAGS += -O2
-# else
-#	$(error Build mode $(BUILD_MODE) not supported by this Makefile)
-# endif
+RELEASE_PARSER_OBJS = Release/parser.o
+RELEASE_PARSER_FLEX_OBJS = Release/parser_flex.o Release/lexer.o Release/bison.o
+DEBUG_PARSER_OBJS = Debug/parser.o
+DEBUG_PARSER_FLEX_OBJS = Debug/parser_flex.o Debug/lexer.o Debug/bison.o
 
 %.c:	%.l
 	$(LEX) $(LFLAGS) --outfile=$@ $<
@@ -26,19 +18,37 @@ PARSER_FLEX_OBJS = parser_flex.o lexer.o bison.o
 %.c:	%.y
 	$(YACC) $(YFLAGS) $<
 
-%.o:	%.cpp
+Debug/%.o:	%.cpp
 	$(CXX) `llvm-config --cxxflags` -c $(CFLAGS) $(CXXFLAGS) $(CPPFLAGS) -o $@ $<
 
-%.o:	%.c
+Debug/%.o:	%.c
 	$(CC) `llvm-config --cflags` -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
 
-all:	parser parser_flex
+all:		debug release
 
-parser:	$(PARSER_OBJS)
-	$(CC) `llvm-config --ldflags --libs` -o $@ $^
+debug:		CFLAGS += -g3 -O0
+debug:		Debug/parser Debug/parser_flex
 
-parser_flex:	$(PARSER_FLEX_OBJS)
-	$(CC) `llvm-config --ldflags --libs` -o $@ $^
+Debug/parser:	$(DEBUG_PARSER_OBJS)
+	$(CXX) `llvm-config --ldflags --libs` -g3 -O0 -o $@ $^
+
+Debug/parser_flex:	$(DEBUG_PARSER_FLEX_OBJS)
+	$(CXX) `llvm-config --ldflags --libs` -g3 -O0 -o $@ $^
+
+Release/%.o:	%.cpp
+	$(CXX) `llvm-config --cxxflags` -c $(CFLAGS) $(CXXFLAGS) $(CPPFLAGS) -o $@ $<
+
+Release/%.o:	%.c
+	$(CC) `llvm-config --cflags` -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+
+release:	CFLAGS += -O2
+release:	Release/parser Release/parser_flex
+
+Release/parser:	$(RELEASE_PARSER_OBJS)
+	$(CXX) `llvm-config --ldflags --libs` -O3 -o $@ $^
+
+Release/parser_flex:	$(RELEASE_PARSER_FLEX_OBJS)
+	$(CXX) `llvm-config --ldflags --libs` -O3 -o $@ $^
 
 lexer.o:	lexer.l bison.h
 
@@ -46,4 +56,6 @@ bison.h bison.c:	bison.y
 	$(YACC) $(YFLAGS) -d $<
 
 clean:
-	rm -fr parser $(PARSER_OBJS) $(PARSER_FLEX_OBJS)
+	rm -fr Debug/parser Debug/parser_flex $(DEBUG_PARSER_OBJS) $(DEBUG_PARSER_FLEX_OBJS)
+	rm -fr Release/parser Release/parser_flex $(RELEASE_PARSER_OBJS) $(RELEASE_PARSER_FLEX_OBJS)
+	
