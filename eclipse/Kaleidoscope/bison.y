@@ -29,6 +29,10 @@ extern : TOK_EXTERN name args
 			{			
 			} 
 
+def : TOK_DEF name args
+			{			
+			} 
+
 name : TOK_IDENTIFIER
 			{
 			}

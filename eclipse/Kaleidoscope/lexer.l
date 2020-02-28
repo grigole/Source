@@ -13,11 +13,11 @@ letter        [a-zA-Z]
 
 %%
 
-[digit]+"."?+[digit]+	{ return TOK_NUMBER; }
-[letter][{letter}0-9]*	{ return TOK_IDENTIFIER; }
-
 "def"					{ return TOK_DEF; }
 "extern"				{ return TOK_EXTERN; }
+
+[digit]+"."?+[digit]+	{ return TOK_NUMBER; }
+[letter][{letter}0-9]*	{ return TOK_IDENTIFIER; }
 
 %%
 
