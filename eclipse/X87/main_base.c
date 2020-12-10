@@ -7,7 +7,10 @@
 
 #include <stdio.h>
 
-extern double func( double x, double y );
+double func( double x, double y )
+{
+	return x * y;
+}
 
 int main( void )
 {

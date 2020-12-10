@@ -1,5 +1,5 @@
 .text
 .global func
 
-func:  	movl $1, %eax
+func:  	vdivsd %xmm0, %xmm1, %xmm0
 		ret
