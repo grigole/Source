@@ -6,7 +6,7 @@ class KaleidDriver;
 
 //Tell Flex the lexer's prototype ...
 #define YY_DECL \
-  yy::KaleidParser::symbol_type yylex (KaleidDriver& driver)
+  yy::KaleidDriver::symbol_type yylex (KaleidDriver& driver)
 // ... and declare it for the parser's sake.
 YY_DECL;
 

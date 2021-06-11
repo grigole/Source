@@ -1,9 +1,16 @@
 %{
+
+// Give Flex the prototype of yylex we want ...
+# define YY_DECL \
+  yy::parser::symbol_type yylex (driver& drv)
+// ... and declare it for the parser's sake.
+YY_DECL;
+
 %}
 
 %require "3.1"
-%language "c"
-%output  "bison.c"
+%language "c++"
+%output  "bison.cpp"
 %defines "bison.h"
 
 %union

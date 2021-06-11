@@ -299,7 +299,8 @@ static std::unique_ptr<PrototypeAST> ParseExtern() {
 
 static void HandleDefinition() {
   if (ParseDefinition()) {
-    fprintf(stderr, "Parsed a function definition.\n");
+    fprintf(stdout, "Parsed a function definition.\n");
+    fflush(stdout);
   } else {
     // Skip token for error recovery.
     getNextToken();
@@ -308,7 +309,8 @@ static void HandleDefinition() {
 
 static void HandleExtern() {
   if (ParseExtern()) {
-    fprintf(stderr, "Parsed an extern\n");
+    fprintf(stdout, "Parsed an extern\n");
+    fflush(stdout);
   } else {
     // Skip token for error recovery.
     getNextToken();
@@ -318,7 +320,8 @@ static void HandleExtern() {
 static void HandleTopLevelExpression() {
   // Evaluate a top-level expression into an anonymous function.
   if (ParseTopLevelExpr()) {
-    fprintf(stderr, "Parsed a top-level expr\n");
+    fprintf(stdout, "Parsed a top-level expr\n");
+    fflush(stdout);
   } else {
     // Skip token for error recovery.
     getNextToken();
@@ -328,7 +331,8 @@ static void HandleTopLevelExpression() {
 /// top ::= definition | external | expression | ';'
 static void MainLoop() {
   while (true) {
-    fprintf(stderr, "ready> ");
+    fprintf(stdout, "ready> ");
+    fflush(stdout);
     switch (CurTok) {
     case tok_eof:
       return;
