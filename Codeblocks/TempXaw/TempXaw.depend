@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1520817813 source:/home/grigole/src/Codeblocks/TempXaw/main.c
+1520817950 source:/home/grigole/src/Codeblocks/TempXaw/main.c
 	<stdio.h>
 	<stdlib.h>
 	<X11/StringDefs.h>

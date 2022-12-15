@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <math.h>
 
 double test(double a, double b) {
@@ -10,5 +11,5 @@ double test(double a, double b) {
 
 int main()
 {
-	test( 1.0, 2.0 );
+	printf( "%lf\n", test( 1.0, 2.0 ) );
 }
