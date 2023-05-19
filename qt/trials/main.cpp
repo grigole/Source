@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     map.insert( "Roberta", 51 );
 
     qInfo() << map;
-    qInfo() << "Greg is" << map["Greg"];
+    qInfo() << "Greg is" << map["Greg"] << "years old.";
 
     return a.exec();
 }
