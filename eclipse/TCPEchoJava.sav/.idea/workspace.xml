@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0d9fe84c-1a07-4868-be4e-386921426434" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Codeblocks/BasicWayland/BasicWayland.layout" beforeDir="false" afterPath="$PROJECT_DIR$/../../Codeblocks/BasicWayland/BasicWayland.layout" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Codeblocks/BasicX/BasicX.layout" beforeDir="false" afterPath="$PROJECT_DIR$/../../Codeblocks/BasicX/BasicX.layout" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Codeblocks/DBProfile/DBProfile.layout" beforeDir="false" afterPath="$PROJECT_DIR$/../../Codeblocks/DBProfile/DBProfile.layout" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Codeblocks/DBProfileCPP/DBProfileCPP.layout" beforeDir="false" afterPath="$PROJECT_DIR$/../../Codeblocks/DBProfileCPP/DBProfileCPP.layout" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Codeblocks/File/File.layout" beforeDir="false" afterPath="$PROJECT_DIR$/../../Codeblocks/File/File.layout" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Codeblocks/IEEE/IEEE.depend" beforeDir="false" afterPath="$PROJECT_DIR$/../../Codeblocks/IEEE/IEEE.depend" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Codeblocks/IEEE/IEEE.layout" beforeDir="false" afterPath="$PROJECT_DIR$/../../Codeblocks/IEEE/IEEE.layout" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Codeblocks/TempXaw/TempXaw.depend" beforeDir="false" afterPath="$PROJECT_DIR$/../../Codeblocks/TempXaw/TempXaw.depend" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Codeblocks/TempXaw/TempXaw.layout" beforeDir="false" afterPath="$PROJECT_DIR$/../../Codeblocks/TempXaw/TempXaw.layout" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Codeblocks/Threads/Threads.layout" beforeDir="false" afterPath="$PROJECT_DIR$/../../Codeblocks/Threads/Threads.layout" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IntelliJ/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IntelliJ/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IntelliJ/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IntelliJ/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IntelliJ/HelloWorld.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IntelliJ/src/com/gvrsoft/helloworld/HelloWorld.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../asm/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Algebra-1/.settings/language.settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Algebra-1/.settings/language.settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Exec/.settings/language.settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Exec/.settings/language.settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Kaleidoscope/.settings/language.settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Kaleidoscope/.settings/language.settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Kaleidoscope/parser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Kaleidoscope/parser.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MMap/.settings/language.settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MMap/.settings/language.settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Math/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/../Math/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Motif/.settings/language.settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Motif/.settings/language.settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OMPThreads/.settings/language.settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../OMPThreads/.settings/language.settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RemoteSystemsTempFiles/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Sum/.settings/language.settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Sum/.settings/language.settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../X87/.settings/language.settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../X87/.settings/language.settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ieee/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ieee/sin.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../ieee/sin.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../linux/system-config-lvm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../netbeans/RadioLib/lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../../netbeans/RadioLib/lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../netbeans/RadioLib/lib/nblibraries.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../netbeans/RadioLib/lib/nblibraries.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../netbeans/RadioLib/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../netbeans/RadioLib/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../netbeans/RadioLib/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../netbeans/RadioLib/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../netbeans/RadioLib/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../netbeans/RadioLib/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../netbeans/RadioPlayer/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../netbeans/RadioPlayer/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../netbeans/RadioPlayer/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../netbeans/RadioPlayer/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../netbeans/RadioPlayer/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../netbeans/RadioPlayer/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../netbeans/RadioTest/lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../../netbeans/RadioTest/lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../netbeans/RadioTest/lib/nblibraries.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../netbeans/RadioTest/lib/nblibraries.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../netbeans/RadioTest/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../netbeans/RadioTest/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../netbeans/RadioTest/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../netbeans/RadioTest/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../netbeans/RadioTest/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../netbeans/RadioTest/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../qt/graphics/graphics.pro.user" beforeDir="false" afterPath="$PROJECT_DIR$/../../qt/graphics/graphics.pro.user" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="21Vc69Qj3osS7A2LKWrC2OpnX24" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0d9fe84c-1a07-4868-be4e-386921426434" name="Changes" comment="" />
+      <created>1638029525831</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1638029525831</updated>
+    </task>
+    <servers />
+  </component>
+</project>

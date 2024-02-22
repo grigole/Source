@@ -1,0 +1,14 @@
+Unit growth for small function inlining: 12->12 (0%)
+
+Inlined 0 calls, eliminated 0 functions
+
+vectorize.c:4:5: optimized: loop vectorized using 16 byte vectors
+vectorize.c:4:5: optimized:  loop versioned for vectorization because of possible aliasing
+vectorize.c:2:6: note: vectorized 1 loops in function.
+Unit growth for small function inlining: 12->12 (0%)
+
+Inlined 0 calls, eliminated 0 functions
+
+vectorize.c:4:5: optimized: loop vectorized using 16 byte vectors
+vectorize.c:4:5: optimized:  loop versioned for vectorization because of possible aliasing
+vectorize.c:2:6: note: vectorized 1 loops in function.

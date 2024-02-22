@@ -1,0 +1,6 @@
+= Start
+@ ./mtrace:[0x563dce49517c] + 0x563dcf1a2690 0x400
+@ ./mtrace:[0x563dce49518a] + 0x563dcf1a2aa0 0x2000
+@ ./mtrace:[0x563dce49519a] - 0x563dcf1a2690
+@ ./mtrace:[0x563dce4951a6] - 0x563dcf1a2aa0
+= End
