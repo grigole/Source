@@ -16,6 +16,8 @@
 **/obj
 **/bin
 **/build
+**/.settings
+**/.vscode
 **/target
 **/zig-cache
 **/zig-out
