@@ -16,9 +16,22 @@
 **/obj
 **/bin
 **/build
+**/target
+**/zig-cache
+**/zig-out
 
 # Sub-projects that don't need to be in Git
 /commodore/
+/compiler_explorer/
+/covid/
+/gcc/
+/hercules/
+/installed/
+/IntelliJ/tutorial/
+/log4c-1.2.4
+/moar
+/moshix_utils
+/zig/examples/
 
 /netbeans/objectDemo/nbproject/private/
 /netbeans/objectDemo/dist/
@@ -58,3 +71,6 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+
+# Oddbaals
+.ccls-cache
