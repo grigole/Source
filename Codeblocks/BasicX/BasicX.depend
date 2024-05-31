@@ -1,6 +1,0 @@
-# depslib dependency file v1.0
-1520803549 source:/home/grigole/src/Codeblocks/BasicX/main.c
-	<stdio.h>
-	<stdlib.h>
-	<X11/Xlib.h>
-

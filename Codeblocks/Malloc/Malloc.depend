@@ -1,5 +1,0 @@
-# depslib dependency file v1.0
-1598966305 source:/home/grigole/src/Codeblocks/Malloc/main.c
-	<stdio.h>
-	<stdlib.h>
-
